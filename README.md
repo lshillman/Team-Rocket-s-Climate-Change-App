@@ -1,6 +1,6 @@
 # Project Title
 
-## Check out the [deployed app](https://lshillman.github.io/Team-Rocket-s-Climate-Change-App/)
+## Check out the [deployed app](https://lshillman.github.io/generation-ship-calculator/)
 
 Description of project (also remember to add a blurb and the deployed link to the repo's "about" section)
 

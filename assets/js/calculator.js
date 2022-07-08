@@ -31,7 +31,7 @@ function getGDP() {
 
 
 function getCountries () {
-  fetch('https://restcountries.com/v3.1/all?fields=name,cca3')
+  fetch('https://restcountries.com/v3.1/all?fields=name,cca3,independent')
   // fetch(testURL)
     .then(function (response) {
       return response.json();
@@ -40,13 +40,20 @@ function getCountries () {
       console.log(data);
 
       for (i=0; i < data.length; i++) {
-        countries.push(data[i].name.common + " - " + data[i].cca3)
+        if (data[i].independent) {
+          countries.push(data[i].name.common + " - " + data[i].cca3)
+        }
       }
       countries.sort();
       console.log(countries);
     })
 }
 
+function init() {
+  getCountries();
+}
+
+init();
 
 accessibleAutocomplete({
   element: document.querySelector('#countryAutocomplete'),

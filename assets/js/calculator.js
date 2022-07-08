@@ -1,7 +1,7 @@
 console.log("I'm a JavaScript file linked to this CALCULATOR page!");
 
 var countryEl = $('#country');
-var country = "USA";
+var countryCode;
 var GDP;
 var wbURL1 = 'http://api.worldbank.org/v2/country/';
 var wbURL2 = '/indicator/NY.GDP.MKTP.CD?date=2021:2021&format=json';
@@ -49,11 +49,29 @@ function getCountries () {
     })
 }
 
+
+function executeSearch(e) {
+  e.preventDefault();
+  var input = $("[name='input-autocomplete']").val();
+  countryCode = input.split(" - ")[1];
+  console.log(countryCode);
+}
+
+
+
+
+
+
+
 function init() {
   getCountries();
 }
 
 init();
+
+
+$('#searchBtn').click(executeSearch);
+
 
 accessibleAutocomplete({
   element: document.querySelector('#countryAutocomplete'),

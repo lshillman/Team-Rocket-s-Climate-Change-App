@@ -1,3 +1,11 @@
+* {
+   font-family: sans-serif;
+}
+
 body {
-   background-color: aqua; 
+   background-color: #fafafa; 
+}
+
+form label {
+   display:block;
 }

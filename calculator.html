@@ -18,7 +18,29 @@
         <h1>Let's have a look at your info, shall we?</h1>
         <form>
             <label for="country">Your country</label>
-            <input type="text" id="country" />
+            <input id="country" placeholder="Start typing...">
+            <!--Tried using datalist here; it sucks. Need to find an autocomplete widget.-->
+            
+            <label for="percent">% you can devote to your space program</label>
+            <input id="percent" placeholder="e.g., 13%">
+
+            <label for="ttl">Time to launch (years from now)</label>
+            <select id="ttl">
+                <option value="300">300</option>
+                <option value="200">200</option>
+                <option value="175">175</option>
+                <option value="150">150</option>
+                <option value="125">125</option>
+                <option value="100">100</option>
+                <option value="90">90</option>
+                <option value="80">80</option>
+                <option value="70">70</option>
+                <option value="60">60</option>
+                <option value="50">50</option>
+                <option value="40">40</option>
+                <option value="30">30</option>
+                <option value="20">20</option>
+            </select>         
         </form>
     </main>
 

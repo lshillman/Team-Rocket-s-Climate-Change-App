@@ -1,7 +1,6 @@
 console.log("I'm a JavaScript file linked to this CALCULATOR page!");
 
 var countryEl = $('#country');
-var countryCode;
 var GDP;
 var wbURL1 = 'http://api.worldbank.org/v2/country/';
 var wbURL2 = '/indicator/NY.GDP.MKTP.CD?date=2021:2021&format=json';
@@ -16,8 +15,8 @@ function collectCountry () {
 
 
 // getGDP needs a three-letter ISO country code.
-function getGDP() {
-    fetch(wbURL1 + countryEl.val() + wbURL2)
+function getGDP(countryCode) {
+    fetch(wbURL1 + countryCode + wbURL2)
     // fetch(testURL)
       .then(function (response) {
         return response.json();
@@ -53,8 +52,9 @@ function getCountries () {
 function executeSearch(e) {
   e.preventDefault();
   var input = $("[name='input-autocomplete']").val();
-  countryCode = input.split(" - ")[1];
+  var countryCode = input.split(" - ")[1];
   console.log(countryCode);
+  getGDP(countryCode);
 }
 
 

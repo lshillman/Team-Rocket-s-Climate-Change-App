@@ -1,6 +1,5 @@
 console.log("I'm a JavaScript file linked to this CALCULATOR page!");
 
-var countryEl = $('#country');
 var GDP;
 var wbURL1 = 'http://api.worldbank.org/v2/country/';
 var wbURL2 = '/indicator/NY.GDP.MKTP.CD?date=2021:2021&format=json';
@@ -9,8 +8,16 @@ var testURL = 'http://api.worldbank.org/v2/country/BRA/indicator/NY.GDP.MKTP.CD?
 var countries = [];
 //['France', 'Russia', 'United States', 'United Kingdom', 'Bahamas', 'Bermuda', 'Russia']; // we'll get this from the restcountries api
 
-function collectCountry () {
-    country = countryEl.val()
+
+function validateCountry(str) {
+  console.log('I am now validating the country');
+  if (countries.includes(str)) {
+    var countryCode = str.split(" - ")[1];
+    getGDP(countryCode);
+  } else {
+    console.log('You must choose a country from the list');
+  }
+
 }
 
 
@@ -51,7 +58,7 @@ function getCountries () {
 
 function executeSearch(e) {
   e.preventDefault();
-  var input = $("[name='input-autocomplete']").val();
+  var input = $("#countryAutocomplete").val();
   var countryCode = input.split(" - ")[1];
   console.log(countryCode);
   getGDP(countryCode);
@@ -72,9 +79,15 @@ init();
 
 $('#searchBtn').click(executeSearch);
 
+$('#countryAutocomplete').blur(validateCountry);
+
 
 accessibleAutocomplete({
-  element: document.querySelector('#countryAutocomplete'),
+  element: document.querySelector('#countryAutocomplete-container'),
   id: 'countryAutocomplete', // To match it to the existing <label>.
-  source: countries
+  source: countries,
+  showAllValues: true,
+  onConfirm: validateCountry,
+  required: true,
+  autoselect: true
 })

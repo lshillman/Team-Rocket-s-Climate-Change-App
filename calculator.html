@@ -18,12 +18,9 @@
     <main>
         <h1>Let's have a look at your info, shall we?</h1>
         <form>
-            <label for="country">Your country</label>
-            <input id="country" placeholder="Start typing...">
-            <!--Tried using datalist here; it sucks. Need to find an autocomplete widget.-->
-
+            <!-- accessible autocomplete widget from gov.uk -->
             <label for="countryAutocomplete">Select your country</label>
-            <div id="countryAutocomplete"></div>
+            <div id="countryAutocomplete-container"></div>
             
             <label for="percent">% you can devote to your space program</label>
             <input id="percent" placeholder="e.g., 13%">

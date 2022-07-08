@@ -2,3 +2,32 @@
     display:block;
     margin-top: 1rem;
 }
+
+input {
+    width: 300px;
+    font-size: 1rem;
+    padding: 0.25rem;
+    border: 1px solid #999;
+    border-radius: 4px;
+}
+
+#countryAutocomplete-container {
+    width: 300px;
+ }
+
+ #countryAutocomplete {
+    border: 1px solid #999;
+    border-radius: 4px;
+ }
+
+ #countryAutocomplete:focus {
+
+ }
+
+ #countryAutocomplete__listbox {
+    border: 1px solid #999;
+ }
+
+ #countryAutocomplete__listbox li {
+    border: none;
+ }

@@ -1,12 +1,4 @@
-* {
-   font-family: sans-serif;
-}
-
 body {
-   background-color: #fafafa; 
+   background-color: aqua; 
 }
 
-form label {
-   display:block;
-   margin-top: 1rem;
-}

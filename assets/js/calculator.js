@@ -11,6 +11,8 @@ function collectCountry () {
     country = countryEl.val()
 }
 
+
+// getGDP needs a three-letter ISO country code.
 function getGDP() {
     fetch(wbURL1 + countryEl.val() + wbURL2)
     // fetch(testURL)
@@ -18,6 +20,8 @@ function getGDP() {
         return response.json();
       })
       .then(function (data){
-        console.log(data);
+        // console.log(data);
+        GDP = data[1][0].value;
+        console.log(GDP);
       })
 }

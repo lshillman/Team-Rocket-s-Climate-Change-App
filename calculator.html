@@ -7,6 +7,7 @@
     <!--<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css" />-->
     <link rel="stylesheet" href="./assets/css/accessible-autocomplete.min.css" />
     <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/css/calculator.css" />
     <title>Generation Ship Feasibility Calculator</title>
 </head>
 <body>
@@ -17,18 +18,16 @@
     <main>
         <h1>Let's have a look at your info, shall we?</h1>
         <form>
-            <label for="country">Your country</label>
-            <input id="country" placeholder="Start typing...">
-            <!--Tried using datalist here; it sucks. Need to find an autocomplete widget.-->
-
+            <!-- accessible autocomplete widget from gov.uk -->
             <label for="countryAutocomplete">Select your country</label>
-            <div id="countryAutocomplete"></div>
+            <div id="countryAutocomplete-container"></div>
             
             <label for="percent">% you can devote to your space program</label>
-            <input id="percent" placeholder="e.g., 13%">
+            <input id="percent" type="number" min="0" max="100" placeholder="e.g., 13">
 
             <label for="ttl">Time to launch (years from now)</label>
             <select id="ttl">
+                <option value="select-a-timeframe">Select a timeframe</option>
                 <option value="300">300</option>
                 <option value="200">200</option>
                 <option value="175">175</option>
@@ -43,7 +42,8 @@
                 <option value="40">40</option>
                 <option value="30">30</option>
                 <option value="20">20</option>
-            </select>         
+            </select>
+            <button type="submit" id="searchBtn">Find candidate worlds</button>      
         </form>
     </main>
 

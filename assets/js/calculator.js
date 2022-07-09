@@ -1,16 +1,38 @@
-console.log("I'm a JavaScript file linked to this CALCULATOR page!");
-
 var GDP;
+
+// API URLS
 var wbURL1 = 'http://api.worldbank.org/v2/country/';
 var wbURL2 = '/indicator/NY.GDP.MKTP.CD?date=2021:2021&format=json';
-var testURL = 'http://api.worldbank.org/v2/country/BRA/indicator/NY.GDP.MKTP.CD?date=2021:2021&format=json';
+var nasaURL = "https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=select+pl_name,pl_masse,sy_dist+from+ps+where+upper(soltype)+like+%27%CONF%%27+and+pl_masse+between+0.5+and+2.0&format=json&api_key=7jZEPvOZP9azewBX1r9wDAR3cbPA2wfoFLewlex3"; // This was working, but then started returning CORS errors. Wheeeee!
+var raURL = "https://api.richassholes.ml/current/";
 
 var percentEl = $('#percent');
 var ttlEl = $('#ttl');
 var projectFunds;
 
+var candidateWorlds;
+
+var richassholes;
+
 var countries = [];
 //['France', 'Russia', 'United States', 'United Kingdom', 'Bahamas', 'Bermuda', 'Russia']; // we'll get this from the restcountries api
+
+function getPlanets () {
+  // This used to be a function that made an API call to the NASA exoplanet archive. That API started giving me CORS errors, so now it just parses a local JSON file I downloaded through my browser.
+  var parsedPlanets = JSON.parse(planets);
+  console.log(parsedPlanets);
+  
+}
+
+function getAssholes () {
+    fetch(raURL)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data){
+      console.log(data);
+    })
+}
 
 
 function validateCountry(str) {
@@ -64,6 +86,8 @@ function validateFields(e) {
   e.preventDefault();
   if ((percentEl.val() > 0 && percentEl.val() <= 100) && ttlEl.val() != "select-a-timeframe") {
     calculateFunds();
+  } else {
+    // TODO: handle validation messages per-field
   }
 }
 

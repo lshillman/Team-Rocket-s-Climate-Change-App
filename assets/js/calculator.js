@@ -5,6 +5,10 @@ var wbURL1 = 'http://api.worldbank.org/v2/country/';
 var wbURL2 = '/indicator/NY.GDP.MKTP.CD?date=2021:2021&format=json';
 var testURL = 'http://api.worldbank.org/v2/country/BRA/indicator/NY.GDP.MKTP.CD?date=2021:2021&format=json';
 
+var percentEl = $('#percent');
+var ttlEl = $('#ttl');
+var projectFunds;
+
 var countries = [];
 //['France', 'Russia', 'United States', 'United Kingdom', 'Bahamas', 'Bermuda', 'Russia']; // we'll get this from the restcountries api
 
@@ -15,7 +19,7 @@ function validateCountry(str) {
     var countryCode = str.split(" - ")[1];
     getGDP(countryCode);
   } else {
-    console.log('You must choose a country from the list');
+    // console.log('You must choose a country from the list');
   }
 
 }
@@ -56,12 +60,17 @@ function getCountries () {
 }
 
 
-function executeSearch(e) {
+function validateFields(e) {
   e.preventDefault();
-  var input = $("#countryAutocomplete").val();
-  var countryCode = input.split(" - ")[1];
-  console.log(countryCode);
-  getGDP(countryCode);
+  if ((percentEl.val() > 0 && percentEl.val() <= 100) && ttlEl.val() != "select-a-timeframe") {
+    calculateFunds();
+  }
+}
+
+function calculateFunds() {
+  var funds = Math.floor(GDP * percentEl.val() * ttlEl.val());
+  projectFunds = funds;
+  console.log("Total available funds: " + funds.toLocaleString());
 }
 
 function autocompleteArrow (obj) {
@@ -79,7 +88,7 @@ function init() {
 init();
 
 
-$('#searchBtn').click(executeSearch);
+$('#searchBtn').click(validateFields);
 
 $('#countryAutocomplete').blur(validateCountry);
 
@@ -92,4 +101,5 @@ accessibleAutocomplete({
   onConfirm: validateCountry,
   required: true,
   autoselect: true,
+  displayMenu: 'overlay'
 })

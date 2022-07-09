@@ -12,7 +12,7 @@ var projectFunds;
 
 var candidateWorlds = [];
 
-var richassholes;
+var richassholes = [];
 
 var countries = [];
 //['France', 'Russia', 'United States', 'United Kingdom', 'Bahamas', 'Bermuda', 'Russia']; // we'll get this from the restcountries api
@@ -30,7 +30,7 @@ function parsePlanets () {
       })
   }
   candidateWorlds.sort((a, b) => {
-    return a.distance - b.distance;
+    return a.distance - b.distance; // sort candidateWorlds nearest to farthest
   });
 
   console.log(candidateWorlds);
@@ -54,7 +54,13 @@ function getAssholes () {
       return response.json();
     })
     .then(function (data){
-      console.log(data);
+        for (i=0; i < data.length; i++) {
+          richassholes.push({
+            "name": data[i].name,
+            "networth": data[i].networth * 1000000000
+          })
+    }
+      console.log(richassholes);
     })
 }
 

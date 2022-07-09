@@ -10,19 +10,43 @@ var percentEl = $('#percent');
 var ttlEl = $('#ttl');
 var projectFunds;
 
-var candidateWorlds;
+var candidateWorlds = [];
 
 var richassholes;
 
 var countries = [];
 //['France', 'Russia', 'United States', 'United Kingdom', 'Bahamas', 'Bermuda', 'Russia']; // we'll get this from the restcountries api
 
-function getPlanets () {
+function parsePlanets () {
   // This used to be a function that made an API call to the NASA exoplanet archive. That API started giving me CORS errors, so now it just parses a local JSON file I downloaded through my browser.
   var parsedPlanets = JSON.parse(planets);
-  console.log(parsedPlanets);
-  
+  for (i=0; i < parsedPlanets.length; i++) {
+      candidateWorlds.push({
+          "name": parsedPlanets[i].pl_name,
+          "distance": Math.floor(parsedPlanets[i].sy_dist * 3.261564),
+          "tta": Math.floor(parsedPlanets[i].sy_dist * 3.261564) * 37.5,
+          "population": Math.floor(parsedPlanets[i].sy_dist * 3.261564) * 10000,
+          "cost": (Math.floor(parsedPlanets[i].sy_dist * 3.261564) * 10000) * 100000000,
+      })
+  }
+  candidateWorlds.sort((a, b) => {
+    return a.distance - b.distance;
+  });
+
+  console.log(candidateWorlds);
+
 }
+
+
+
+
+
+
+
+
+
+
+
 
 function getAssholes () {
     fetch(raURL)

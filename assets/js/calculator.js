@@ -23,10 +23,10 @@ function parsePlanets () {
   for (i=0; i < parsedPlanets.length; i++) {
       candidateWorlds.push({
           "name": parsedPlanets[i].pl_name,
-          "distance": Math.floor(parsedPlanets[i].sy_dist * 3.261564),
-          "tta": Math.floor(parsedPlanets[i].sy_dist * 3.261564) * 37.5,
-          "population": Math.floor(parsedPlanets[i].sy_dist * 3.261564) * 10000,
-          "cost": (Math.floor(parsedPlanets[i].sy_dist * 3.261564) * 10000) * 100000000,
+          "distance": Math.floor(parsedPlanets[i].sy_dist * 3.261564), // convert parsecs to light years
+          "tta": Math.floor(parsedPlanets[i].sy_dist * 3.261564) * 37.5, // assume 37.5 years per light year based on Project Hyperion timeframe
+          "population": Math.floor(parsedPlanets[i].sy_dist * 3.261564) * 10000, // assume 10,000 people needed per light year
+          "cost": (Math.floor(parsedPlanets[i].sy_dist * 3.261564) * 10000) * 100000000, // assume one hundred million USD per person
       })
   }
   candidateWorlds.sort((a, b) => {

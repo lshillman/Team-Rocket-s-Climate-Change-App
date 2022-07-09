@@ -64,7 +64,9 @@ function executeSearch(e) {
   getGDP(countryCode);
 }
 
-
+function autocompleteArrow (obj) {
+  console.log(obj);
+}
 
 
 
@@ -89,5 +91,5 @@ accessibleAutocomplete({
   showAllValues: true,
   onConfirm: validateCountry,
   required: true,
-  autoselect: true
+  autoselect: true,
 })

@@ -23,10 +23,11 @@
             <div id="countryAutocomplete-container"></div>
             
             <label for="percent">% you can devote to your space program</label>
-            <input id="percent" placeholder="e.g., 13%">
+            <input id="percent" type="number" min="0" max="100" placeholder="e.g., 13">
 
             <label for="ttl">Time to launch (years from now)</label>
             <select id="ttl">
+                <option value="select-a-timeframe">Select a timeframe</option>
                 <option value="300">300</option>
                 <option value="200">200</option>
                 <option value="175">175</option>

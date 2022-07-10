@@ -46,8 +46,6 @@ function parsePlanets () {
 
 
 
-
-
 function getAssholes () {
     fetch(raURL)
     .then(function (response) {

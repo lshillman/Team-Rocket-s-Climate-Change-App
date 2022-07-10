@@ -6,6 +6,7 @@ var wbURL2 = '/indicator/NY.GDP.MKTP.CD?date=2021:2021&format=json';
 var nasaURL = "https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=select+pl_name,pl_masse,sy_dist+from+ps+where+upper(soltype)+like+%27%CONF%%27+and+pl_masse+between+0.5+and+2.0&format=json&api_key=7jZEPvOZP9azewBX1r9wDAR3cbPA2wfoFLewlex3"; // This was working, but then started returning CORS errors. Wheeeee!
 var raURL = "https://api.richassholes.ml/current/";
 
+var user;
 var percentEl = $('#percent');
 var ttlEl = $('#ttl');
 var projectFunds;
@@ -18,7 +19,8 @@ var countryForm = $('#countryForm');
 
 var candidateWorlds = [];
 
-var richassholes = [];
+var richassholes = []; // this will store names and net worths
+var raNames = []; // this is names only (for the autocomplete widget)
 
 var countries = [];
 //['France', 'Russia', 'United States', 'United Kingdom', 'Bahamas', 'Bermuda', 'Russia']; // we'll get this from the restcountries api
@@ -48,8 +50,11 @@ function checkUserType() {
         console.log("render individual form")
         individualForm.css("display", "block");
         countryForm.css("display", "none");
+        getAssholes();       
     } else {
         console.log("render country form")
+        getCountries();
+
     }
 
 }
@@ -73,7 +78,16 @@ function getAssholes () {
             "name": data[i].name,
             "networth": data[i].networth * 1000000000
           })
-    }
+          raNames.push(data[i].name);
+        }
+      accessibleAutocomplete({
+        element: document.querySelector('#personAutocomplete-container'),
+        id: 'personAutocomplete',
+        source: raNames,
+        showAllValues: true,
+        required: true,
+        displayMenu: 'overlay'
+      }); 
       console.log(richassholes);
     })
 }
@@ -122,6 +136,16 @@ function getCountries () {
       }
       countries.sort();
       console.log(countries);
+      accessibleAutocomplete({
+        element: document.querySelector('#countryAutocomplete-container'),
+        id: 'countryAutocomplete', // To match it to the existing <label>.
+        source: countries,
+        showAllValues: true,
+        onConfirm: validateCountry,
+        required: true,
+        autoselect: true,
+        displayMenu: 'overlay'
+      });
     })
 }
 
@@ -184,7 +208,7 @@ function renderTable () {
 
 function init() {
   checkUserType();
-  getCountries();
+
   parsePlanets();
 }
 
@@ -196,13 +220,24 @@ $('#searchBtn').click(validateFields);
 $('#countryAutocomplete').blur(validateCountry);
 
 
-accessibleAutocomplete({
-  element: document.querySelector('#countryAutocomplete-container'),
-  id: 'countryAutocomplete', // To match it to the existing <label>.
-  source: countries,
-  showAllValues: true,
-  onConfirm: validateCountry,
-  required: true,
-  autoselect: true,
-  displayMenu: 'overlay'
-})
+// accessibleAutocomplete({
+//   element: document.querySelector('#countryAutocomplete-container'),
+//   id: 'countryAutocomplete', // To match it to the existing <label>.
+//   source: countries,
+//   showAllValues: true,
+//   onConfirm: validateCountry,
+//   required: true,
+//   autoselect: true,
+//   displayMenu: 'overlay'
+// });
+
+// accessibleAutocomplete({
+//   element: document.querySelector('#countryAutocomplete-container'),
+//   id: 'personAutocomplete', // To match it to the existing <label>.
+//   source: richassholes,
+//   showAllValues: true,
+//   onConfirm: validateCountry,
+//   required: true,
+//   autoselect: true,
+//   displayMenu: 'overlay'
+// });

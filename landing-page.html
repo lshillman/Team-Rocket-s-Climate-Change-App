@@ -10,22 +10,23 @@
 </head>
 <body>
     <main>
-        <section class="text-center p-5 text-base font-medium mt-5 text-white bg-black/50 lg:mx-96">It's 2022 and arctic ice levels are at 12%
+        <section class="text-center p-5 text-base font-medium mt-5 text-white bg-black/50 lg:mx-96">It's 2022 and arctic ice levels are at <span class="bg-red-600 rounded px-1" id="ice-level"></span>
             <p class="p-3 text-4xl font-semibold text-white">Time for a contingency plan.</p>
             <p class="p-3 text-white">I'm a...</p>
-            <button type="button" class="inline-block px-6 py-2.5 bg-purple-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out">Private Individual</button>
-            <button type="button" class="inline-block px-6 py-2.5 bg-purple-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out">Government</button>
+            <button id="asshole" type="button" class="inline-block px-6 py-2.5 bg-purple-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out">Private Individual</button>
+            <button id="government" type="button" class="inline-block px-6 py-2.5 bg-purple-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out">Government</button>
         </section>
-        <div class="flex justify-center text-center">
-            <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm backdrop-opacity-50">
-              <p class="text-gray-700 text-base mb-4">
+        <div class="flex justify-center text-center bg-clip-text">
+            <div class="block p-6 rounded-lg shadow-lg bg-white/80 max-w-sm text-medium">
+              <p class="text-gray-900 mb-4">
                 Team Rocket's Generation Ship Feasibility Calculator helps you make initial calculations for starting an offworld colony. 
                 <br>
                 <br>
-                Calculations are based on recommendations from Project Hyperion, a two-year assessment of the feasibility of a cewed interstellar flight using current and near-future technologies. Data sources include NASA's exoplanet archive and the World Bank.
+                Calculations are based on recommendations from Project Hyperion, a two-year assessment of the feasibility of a crewed interstellar flight using current and near-future technologies. Data sources include NASA's exoplanet archive and the World Bank.
               </p>
             </div>
           </div>
     </main>
 </body>
+<script src="./assets/js/home.js"></script>
 </html>

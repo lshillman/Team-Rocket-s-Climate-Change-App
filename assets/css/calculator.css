@@ -49,9 +49,19 @@ input[type=number] {
 }
 
 .feasible {
-    background-color: rgb(222, 255, 222);
+    background-color: green;
+    color: white;
+    padding: 0 1rem;
+    border-radius: 1rem;
 }
 
 .not-feasible {
-    background-color: rgb(255, 219, 224);
+    background-color: red;
+    color: white;
+    padding: 0 1rem;
+    border-radius: 1rem;
+}
+
+#individualForm {
+    display:none;
 }

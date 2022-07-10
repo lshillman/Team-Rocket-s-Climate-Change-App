@@ -82,7 +82,7 @@
                             border border-solid border-gray-300 rounded transition ease-in-out m-0
                             focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
                           "
-                          id="percent"
+                          id="indivPercent"
                           min="0"
                           max="100"
                           placeholder="e.g., 13"
@@ -91,7 +91,7 @@
                       <div class="mb-3">
                         <label for="exampleText0" class="form-label inline-block mb-2 text-gray-700"
                           >Time to Launch (years from now)</label>
-                        <select id="ttl" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding
+                        <select id="indivTTL" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding
                         border border-solid border-gray-300 rounded transition ease-in-out m-0
                         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">
                           <option value="select-a-timeframe">Select a timeframe</option>
@@ -112,7 +112,7 @@
                       </select>
                       </div>
                       <div>
-                        <button type="submit" id="searchBtn" data-mdb-ripple="true" data-mdb-ripple-color="light" class="inline-block mx-1 my-7 px-6 py-2.5 bg-purple-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out">Find Candidates</button>
+                        <button type="submit" id="indivSearchBtn" data-mdb-ripple="true" data-mdb-ripple-color="light" class="inline-block mx-1 my-7 px-6 py-2.5 bg-purple-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out">Find Candidates</button>
                       </div>
                       </form>
 
@@ -122,13 +122,14 @@
             <div class="min-w-full min-h-full">
               <div class="p-2 mb-3 mflex-wrap">
                 <div class="">
-                  <section id="missionSummary" class="rounded border-1 border-slate-50 bg-white p-4">
-                    <h2 class="font-semibold pl-6 pt-5 font-bold text-2xl">Mission Details</h2>
+                  <h2 class="font-semibold pt-5 font-bold text-2xl mb-2">Mission Details</h2>
+                  <section id="missionSummary" class="rounded border border-slate-200 bg-white p-4">
+                    <p>No details to display yet...</p>
 
 
                   </section>
 
-                  <h2 class="font-semibold pt-5 font-bold text-2xl">Candidate Planets</h2>
+                  <h2 class="font-semibold pt-5 font-bold text-2xl mb-2">Candidate Planets</h2>
                   <table class="w-full">
                     <thead class="border-b">
                       <tr class="odd:bg-white even:bg-slate-50">
@@ -149,6 +150,9 @@
                         <th scope="col" class="text-md font-bold text-gray-900 px-6 py-4 text-left">
                             Population
                             <p class="font-medium text-gray-800">(recommended)</p>
+                        </th>
+                        <th scope="col" class="text-md font-bold text-gray-900 px-6 py-4 text-left">
+                          Feasible?
                         </th>
                       </tr>
                     </thead>

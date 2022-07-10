@@ -9,7 +9,9 @@ var raURL = "https://api.richassholes.ml/current/";
 var percentEl = $('#percent');
 var ttlEl = $('#ttl');
 var projectFunds;
+var totalFeasibleWorlds;
 
+var deetSection = $('#missionSummary')
 var planetTable = $('#planetTable');
 
 var candidateWorlds = [];
@@ -125,6 +127,9 @@ function calculateFunds() {
   var funds = Math.floor(GDP * percentEl.val() * ttlEl.val());
   projectFunds = funds;
   console.log("Total available funds: " + funds.toLocaleString());
+  // TODO display mission details
+  deetSection.html("");
+  deetSection.append(`<p><strong>Your GDP:</strong> ` + GDP + `</p><p><strong>Total mission funding:</strong> ` + projectFunds.toLocaleString() + `</p><p><strong>Feasible candidate worlds:</strong> ` + `pending` + `</p>`)
   renderTable();
 }
 
@@ -134,26 +139,31 @@ function calculateFunds() {
 function renderTable () {
   planetTable.html("");
   var lastPlanet;
+  totalFeasibleWorlds = 0;
   for (i=0; i < candidateWorlds.length; i++) {
       if (candidateWorlds[i].name != lastPlanet) {
           if (projectFunds >= candidateWorlds[i].cost) {
             var color = "feasible";
-            var feasibility = "yes";
+            var feasibility = `<span class="feasible">YES</span>`;
+            totalFeasibleWorlds++;
           } else {
             var color = "not-feasible";
-            var feasibility = "no";
+            var feasibility = `<span class="not-feasible">NO</span>`;
           }
-          planetTable.append(`<tr class="border-b ` + color + `">
+          planetTable.append(`<tr class="border-b odd:bg-white even:bg-slate-50">
           <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-purple-700"><a href="http://www.openexoplanetcatalogue.com/planet/` + candidateWorlds[i].name + `/" target="_blank">` + candidateWorlds[i].name + `</a></td>
           <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">` + candidateWorlds[i].distance.toLocaleString() + `</td>
           <td class="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap">` + Math.floor(candidateWorlds[i].tta).toLocaleString() + ' / ' + Math.floor(candidateWorlds[i].tta/30).toLocaleString() + ' generations' + `</td>
           <td class="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap">` + (candidateWorlds[i].cost/1000000000000).toLocaleString() + `</td>
           <td class="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap">` + candidateWorlds[i].population.toLocaleString() + `</td>
+          <td class="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap">` + feasibility + `</td>
           </tr>`);
           lastPlanet = candidateWorlds[i].name;
       }
 
   }
+  deetSection.html("");
+  deetSection.append(`<p><strong>Your GDP:</strong> ` + GDP.toLocaleString() + `</p><p><strong>Total mission funding:</strong> ` + projectFunds.toLocaleString() + `</p><p><strong>Feasible candidate worlds:</strong> ` + totalFeasibleWorlds + `</p>`)
 }
 
 // TODO: add this styling back in for pre-calc display: odd:bg-white even:bg-slate-50 

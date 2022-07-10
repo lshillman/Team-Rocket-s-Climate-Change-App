@@ -16,6 +16,7 @@
         <section class="bg-zinc-200 p-5 flex-wrap min-h-full">
             <header class="text-2xl mb-5 font-semibold">Constraints</header>
             <div class="flex-wrap justify-left">
+              <form>
                 <div class="mb-3 xl:w-96">
                 <!-- accessible autocomplete widget from gov.uk -->
                 <label for="countryAutocomplete" class="form-label inline-block mb-2 text-gray-700">Select your country</label>
@@ -62,17 +63,18 @@
                   </select>
                   </div>
                   <div>
-                    <button type="button" data-mdb-ripple="true" data-mdb-ripple-color="light" class="inline-block mx-1 my-3 px-6 py-2.5 bg-purple-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out">Find Candidates</button>
+                    <button type="submit" id="searchBtn" data-mdb-ripple="true" data-mdb-ripple-color="light" class="inline-block mx-1 my-7 px-6 py-2.5 bg-purple-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out">Find Candidates</button>
                   </div>
+                  </form>
               </div>
         </section>
         <div class="justify-left">
             <div class="min-w-full min-h-full">
               <div class="p-2 mb-3 mflex-wrap">
                 <div class="">
+                  <h2 class="font-semibold pl-6 pt-5 font-bold text-2xl">Candidate Planets</h2>
                   <table class="ml-5">
                     <thead class="border-b">
-                    <header class="font-semibold pl-24 pt-5 font-bold text-2xl">Candidate Planets</header>
                       <tr class="odd:bg-white even:bg-slate-50">
                         <th scope="col" class="text-md font-bold text-gray-900 px-6 py-4 text-left">
                           Name
@@ -82,12 +84,11 @@
                           <p class="font-medium text-gray-800">Lightyears</p>
                         </th>
                         <th scope="col" class="text-md font-bold text-gray-900 px-6 py-4 text-left">
-                          Time to arrival
-                          <p class="font-medium text-gray-800">Years (generations)</p>
+                          Years to arrival
                         </th>
                         <th scope="col" class="text-md font-bold text-gray-900 px-6 py-4 text-left">
                           Cost
-                          <p class="font-medium text-gray-800">USD (trillions)</p>
+                          <p class="font-medium text-gray-800">USD (Tn)</p>
                         </th>
                         <th scope="col" class="text-md font-bold text-gray-900 px-6 py-4 text-left">
                             Population
@@ -95,114 +96,8 @@
                         </th>
                       </tr>
                     </thead>
-                    <tbody>
-                      <tr class="border-b odd:bg-white even:bg-slate-50">
-                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-purple-700">Teegarden's Star b</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                          12
-                        </td>
-                        <td class="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap">
-                          250(8)
-                        </td>
-                        <td class="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap">
-                          43
-                        </td>
-                        <td class="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap">
-                            50,000
-                        </td>
-                      </tr>
-                      <tr class="odd:bg-white even:bg-slate-50 border-b">
-                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-purple-700">TOI-700 d</td>
-                        <td class="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap">
-                          101
-                        </td>
-                        <td class="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap">
-                          513(17)
-                        </td>
-                        <td class="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap">
-                          79
-                        </td>
-                        <td class="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap">
-                            150,000
-                        </td>
-                      </tr>
-                      <tr class="bg-white border-b">
-                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-purple-700">Kepler-1649 c</td>
-                        <td class="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap">
-                          301
-                        </td>
-                        <td class="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap">
-                          600(20)
-                        </td>
-                        <td class="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap">
-                          102
-                        </td>
-                        <td class="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap">
-                            160,000
-                        </td>
-                      </tr>
-                      <tr class="bg-white border-b">
-                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-purple-700">TRAPPIST-1 d</td>
-                        <td class="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap">
-                          41
-                        </td>
-                        <td class="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap">
-                          350(12)
-                        </td>
-                        <td class="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap">
-                          55
-                        </td>
-                        <td class="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap">
-                            90,000
-                        </td>
-                      </tr>
-                      <tr class="bg-white border-b">
-                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-purple-700">Proxima Cen b</td>
-                        <td class="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap">
-                          4.2
-                        </td>
-                        <td class="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap">
-                          150(5)
-                        </td>
-                        <td class="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap">
-                          39
-                        </td>
-                        <td class="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap">
-                            40,000
-                        </td>
-                      </tr>
-                    </tr>
-                    <tr class="bg-white border-b">
-                      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-purple-700">K2-72 e</td>
-                      <td class="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap">
-                        217
-                      </td>
-                      <td class="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap">
-                        575(19)
-                      </td>
-                      <td class="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap">
-                        97
-                      </td>
-                      <td class="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap">
-                          155,000
-                      </td>
-                    </tr>
-                    </tr>
-                      <tr class="bg-white border-b">
-                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-purple-700">GJ 1061 d</td>
-                        <td class="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap">
-                          12
-                        </td>
-                        <td class="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap">
-                          250(8)
-                        </td>
-                        <td class="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap">
-                          43
-                        </td>
-                        <td class="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap">
-                            50,000
-                        </td>
-                      </tr>
+                    <tbody id="planetTable">
+                      <!--Planets go here-->
                     </tbody>
                   </table>
                 </div>

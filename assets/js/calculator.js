@@ -10,6 +10,8 @@ var percentEl = $('#percent');
 var ttlEl = $('#ttl');
 var projectFunds;
 
+var planetTable = $('#planetTable');
+
 var candidateWorlds = [];
 
 var richassholes = [];
@@ -123,18 +125,36 @@ function calculateFunds() {
   var funds = Math.floor(GDP * percentEl.val() * ttlEl.val());
   projectFunds = funds;
   console.log("Total available funds: " + funds.toLocaleString());
+  renderTable();
 }
 
-function autocompleteArrow (obj) {
-  console.log(obj);
-}
 
+
+
+function renderTable () {
+  planetTable.html("");
+  var lastPlanet;
+  for (i=0; i < candidateWorlds.length; i++) {
+      if (candidateWorlds[i].name != lastPlanet) {
+          planetTable.append(`<tr class="border-b odd:bg-white even:bg-slate-50">
+          <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-purple-700">` + candidateWorlds[i].name + `</td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">` + candidateWorlds[i].distance.toLocaleString() + `</td>
+          <td class="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap">` + Math.floor(candidateWorlds[i].tta).toLocaleString() + ' / ' + Math.floor(candidateWorlds[i].tta/30).toLocaleString() + ' generations' + `</td>
+          <td class="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap">` + (candidateWorlds[i].cost/1000000000000).toLocaleString() + `</td>
+          <td class="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap">` + candidateWorlds[i].population.toLocaleString() + `</td>
+          </tr>`);
+          lastPlanet = candidateWorlds[i].name;
+      }
+
+  }
+}
 
 
 
 
 function init() {
   getCountries();
+  parsePlanets();
 }
 
 init();

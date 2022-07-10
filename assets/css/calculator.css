@@ -2,22 +2,7 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-#searchBtn {
-    display:block;
-    margin-top: 1rem;
-}
 
-/* input {
-    width: 300px;
-    font-size: 1rem;
-    padding: 0.25rem;
-    border: 1px solid #999;
-    border-radius: 4px;
-} */
-
-#countryAutocomplete-container {
-    /* width: 300px; */
- }
 
  #countryAutocomplete {
     border: 1px solid #999;

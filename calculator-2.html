@@ -17,50 +17,49 @@
             <header class="text-2xl mb-5 font-semibold">Constraints</header>
             <div class="flex-wrap justify-left">
                 <div class="mb-3 xl:w-96">
-                  <label for="exampleText0" class="form-label inline-block mb-2 text-gray-700"
-                    >Your Country</label>
-                  <input
-                    type="text"
-                    class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding
-                      border border-solid border-gray-300 rounded transition ease-in-out m-0
-                      focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
-                    "
-                    id="exampleText0"
-                    placeholder="e.g., 'India'"
-                  />
-
                 <!-- accessible autocomplete widget from gov.uk -->
                 <label for="countryAutocomplete" class="form-label inline-block mb-2 text-gray-700">Select your country</label>
                 <div id="countryAutocomplete-container"></div>
-
                 </div>
                 <div class="mb-3 xl:w-96">
                     <label for="exampleText0" class="form-label inline-block mb-2 text-gray-700"
                       >Space Budget (% of GDP)</label
                     >
                     <input
-                      type="text"
+                      type="number"
                       class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding
                         border border-solid border-gray-300 rounded transition ease-in-out m-0
                         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
                       "
-                      id="exampleText0"
-                      placeholder=""
+                      id="percent"
+                      min="0"
+                      max="100"
+                      placeholder="e.g., 13"
                     />
                   </div>
                   <div class="mb-3 xl:w-96">
                     <label for="exampleText0" class="form-label inline-block mb-2 text-gray-700"
-                      >Time to Launch</label
+                      >Time to Launch (years from now)</label
                     >
-                    <input
-                      type="text"
-                      class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding
-                        border border-solid border-gray-300 rounded transition ease-in-out m-0
-                        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
-                      "
-                      id="exampleText0"
-                      placeholder="100+ years"
-                    />
+                    <select id="ttl" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding
+                    border border-solid border-gray-300 rounded transition ease-in-out m-0
+                    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">
+                      <option value="select-a-timeframe">Select a timeframe</option>
+                      <option value="300">300</option>
+                      <option value="200">200</option>
+                      <option value="175">175</option>
+                      <option value="150">150</option>
+                      <option value="125">125</option>
+                      <option value="100">100</option>
+                      <option value="90">90</option>
+                      <option value="80">80</option>
+                      <option value="70">70</option>
+                      <option value="60">60</option>
+                      <option value="50">50</option>
+                      <option value="40">40</option>
+                      <option value="30">30</option>
+                      <option value="20">20</option>
+                  </select>
                   </div>
                   <div>
                     <button type="button" data-mdb-ripple="true" data-mdb-ripple-color="light" class="inline-block mx-1 my-3 px-6 py-2.5 bg-purple-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out">Find Candidates</button>

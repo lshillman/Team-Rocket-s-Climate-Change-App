@@ -136,7 +136,14 @@ function renderTable () {
   var lastPlanet;
   for (i=0; i < candidateWorlds.length; i++) {
       if (candidateWorlds[i].name != lastPlanet) {
-          planetTable.append(`<tr class="border-b odd:bg-white even:bg-slate-50">
+          if (projectFunds >= candidateWorlds[i].cost) {
+            var color = "feasible";
+            var feasibility = "yes";
+          } else {
+            var color = "not-feasible";
+            var feasibility = "no";
+          }
+          planetTable.append(`<tr class="border-b ` + color + `">
           <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-purple-700">` + candidateWorlds[i].name + `</td>
           <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">` + candidateWorlds[i].distance.toLocaleString() + `</td>
           <td class="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap">` + Math.floor(candidateWorlds[i].tta).toLocaleString() + ' / ' + Math.floor(candidateWorlds[i].tta/30).toLocaleString() + ' generations' + `</td>
@@ -149,6 +156,7 @@ function renderTable () {
   }
 }
 
+// TODO: add this styling back in for pre-calc display: odd:bg-white even:bg-slate-50 
 
 
 

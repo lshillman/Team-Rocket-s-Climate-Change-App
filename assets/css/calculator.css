@@ -47,3 +47,11 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+.feasible {
+    background-color: rgb(222, 255, 222);
+}
+
+.not-feasible {
+    background-color: rgb(255, 219, 224);
+}

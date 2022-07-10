@@ -13,6 +13,8 @@ var totalFeasibleWorlds;
 
 var deetSection = $('#missionSummary')
 var planetTable = $('#planetTable');
+var individualForm = $('#individualForm');
+var countryForm = $('#countryForm');
 
 var candidateWorlds = [];
 
@@ -41,6 +43,16 @@ function parsePlanets () {
 
 }
 
+function checkUserType() {
+    if (window.location.href.split("user=")[1] == "individual") {
+        console.log("render individual form")
+        individualForm.css("display", "block");
+        countryForm.css("display", "none");
+    } else {
+        console.log("render country form")
+    }
+
+}
 
 
 
@@ -171,6 +183,7 @@ function renderTable () {
 
 
 function init() {
+  checkUserType();
   getCountries();
   parsePlanets();
 }

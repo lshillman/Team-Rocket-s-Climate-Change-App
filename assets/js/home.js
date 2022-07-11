@@ -22,5 +22,5 @@ var button = document.querySelector("#asshole");
 
 button.addEventListener("click", function(individual){
     individual.preventDefault();
-    window.location.href("?user=individual")
-})
+    window.location.href = "./calculator-2.html?user=individual"
+}) 

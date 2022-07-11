@@ -1,25 +1,35 @@
-var GDP;
-
 // API URLS
 var wbURL1 = 'http://api.worldbank.org/v2/country/';
 var wbURL2 = '/indicator/NY.GDP.MKTP.CD?date=2021:2021&format=json';
 var nasaURL = "https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=select+pl_name,pl_masse,sy_dist+from+ps+where+upper(soltype)+like+%27%CONF%%27+and+pl_masse+between+0.5+and+2.0&format=json&api_key=7jZEPvOZP9azewBX1r9wDAR3cbPA2wfoFLewlex3"; // This was working, but then started returning CORS errors. Wheeeee!
 var raURL = "https://api.richassholes.ml/current/";
 
-var user;
+var user; // the type of user, passed in as a URL parameter
+
+// country form elements
+var countryForm = $('#countryForm');
 var percentEl = $('#percent');
 var ttlEl = $('#ttl');
-var projectFunds;
-var totalFeasibleWorlds;
 
+// billionnaire form elements
+var individualForm = $('#individualForm');
+var percentOfWealth = $('#indivPercent');
+var indivTTL = $('indivTTL');
+
+// mission and planet section
 var deetSection = $('#missionSummary')
 var planetTable = $('#planetTable');
-var individualForm = $('#individualForm');
-var countryForm = $('#countryForm');
 
-var candidateWorlds = [];
+// fetched or calculated values
+var GDP;
+var projectFunds;
+var netWorth;
+var indivProjectFunds;
+var totalFeasibleWorlds;
 
-var richassholes = []; // this will store names and net worths
+var candidateWorlds = []; // 
+
+var richassholes = {}; // this will store names and net worths
 var raNames = []; // this is names only (for the autocomplete widget)
 
 var countries = [];
@@ -47,12 +57,10 @@ function parsePlanets () {
 
 function checkUserType() {
     if (window.location.href.split("user=")[1] == "individual") {
-        console.log("render individual form")
         individualForm.css("display", "block");
         countryForm.css("display", "none");
         getAssholes();       
     } else {
-        console.log("render country form")
         getCountries();
 
     }
@@ -74,10 +82,7 @@ function getAssholes () {
     })
     .then(function (data){
         for (i=0; i < data.length; i++) {
-          richassholes.push({
-            "name": data[i].name,
-            "networth": data[i].networth * 1000000000
-          })
+          richassholes[data[i].name] = data[i].networth * 1000000000;
           raNames.push(data[i].name);
         }
       accessibleAutocomplete({
@@ -91,6 +96,19 @@ function getAssholes () {
       console.log(richassholes);
     })
 }
+
+
+function validatePerson(str) {
+  console.log('I am now validating the person');
+  if (countries.includes(str)) {
+    var countryCode = str.split(" - ")[1];
+    getGDP(countryCode);
+  } else {
+    // console.log('You must choose a country from the list');
+  }
+
+}
+
 
 
 function validateCountry(str) {
@@ -177,7 +195,7 @@ function renderTable () {
   var lastPlanet;
   totalFeasibleWorlds = 0;
   for (i=0; i < candidateWorlds.length; i++) {
-      if (candidateWorlds[i].name != lastPlanet) {
+      if (candidateWorlds[i].name != lastPlanet) { // make sure we aren't showing duplicate planets
           if (projectFunds >= candidateWorlds[i].cost) {
             var color = "feasible";
             var feasibility = `<span class="feasible">YES</span>`;
@@ -202,7 +220,16 @@ function renderTable () {
   deetSection.append(`<p><strong>Your GDP:</strong> ` + GDP.toLocaleString() + `</p><p><strong>Total mission funding:</strong> ` + projectFunds.toLocaleString() + `</p><p><strong>Feasible candidate worlds:</strong> ` + totalFeasibleWorlds + `</p>`)
 }
 
-// TODO: add this styling back in for pre-calc display: odd:bg-white even:bg-slate-50 
+
+function validateIndivFields(e) {
+  e.preventDefault();
+  if ((percentOfWealth.val() > 0 && percentOfWealth.val() <= 100) && indivTTL.val() != "select-a-timeframe") {
+    calculateFunds();
+  } else {
+    // TODO: handle validation messages per-field
+  }
+}
+
 
 
 
@@ -216,6 +243,7 @@ init();
 
 
 $('#searchBtn').click(validateFields);
+$('#indivSearchBtn').click(validateIndivFields);
 
 $('#countryAutocomplete').blur(validateCountry);
 

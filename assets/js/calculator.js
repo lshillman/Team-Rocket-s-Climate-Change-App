@@ -14,7 +14,7 @@ var ttlEl = $('#ttl');
 // billionnaire form elements
 var individualForm = $('#individualForm');
 var percentOfWealth = $('#indivPercent');
-var indivTTL = $('indivTTL');
+var indivTTL = $('#indivTTL');
 
 // mission and planet section
 var deetSection = $('#missionSummary')
@@ -44,7 +44,7 @@ function parsePlanets () {
           "distance": Math.floor(parsedPlanets[i].sy_dist * 3.261564), // convert parsecs to light years
           "tta": Math.floor(parsedPlanets[i].sy_dist * 3.261564) * 37.5, // assume 37.5 years per light year based on Project Hyperion timeframe
           "population": Math.floor(parsedPlanets[i].sy_dist * 3.261564) * 10000, // assume 10,000 people needed per light year
-          "cost": (Math.floor(parsedPlanets[i].sy_dist * 3.261564) * 10000) * 100000000, // assume one hundred million USD per person
+          "cost": (Math.floor(parsedPlanets[i].sy_dist * 3.261564) * 10000) * 250000000, // assume 250 million USD per person
       })
   }
   candidateWorlds.sort((a, b) => {
@@ -59,10 +59,11 @@ function checkUserType() {
     if (window.location.href.split("user=")[1] == "individual") {
         individualForm.css("display", "block");
         countryForm.css("display", "none");
+        user = "individual";
         getAssholes();       
     } else {
         getCountries();
-
+        user = "govt";
     }
 
 }
@@ -90,6 +91,7 @@ function getAssholes () {
         id: 'personAutocomplete',
         source: raNames,
         showAllValues: true,
+        onConfirm: validatePerson,
         required: true,
         displayMenu: 'overlay'
       }); 
@@ -100,11 +102,11 @@ function getAssholes () {
 
 function validatePerson(str) {
   console.log('I am now validating the person');
-  if (countries.includes(str)) {
-    var countryCode = str.split(" - ")[1];
-    getGDP(countryCode);
+  if (richassholes[str]) {
+    netWorth = richassholes[str];
+    console.log(netWorth)
   } else {
-    // console.log('You must choose a country from the list');
+    console.log('You must choose a person from the list');
   }
 
 }
@@ -178,13 +180,16 @@ function validateFields(e) {
 }
 
 function calculateFunds() {
-  var funds = Math.floor(GDP * percentEl.val() * ttlEl.val());
-  projectFunds = funds;
-  console.log("Total available funds: " + funds.toLocaleString());
-  // TODO display mission details
-  deetSection.html("");
-  deetSection.append(`<p><strong>Your GDP:</strong> ` + GDP + `</p><p><strong>Total mission funding:</strong> ` + projectFunds.toLocaleString() + `</p><p><strong>Feasible candidate worlds:</strong> ` + `pending` + `</p>`)
-  renderTable();
+    if (user != "individual") {
+        var funds = Math.floor(GDP * (percentEl.val()/100) * ttlEl.val());
+        projectFunds = funds;
+        console.log("Total available funds: " + funds.toLocaleString());
+    } else {
+        var funds = Math.floor(netWorth * (percentOfWealth.val()/100) * indivTTL.val());
+        indivProjectFunds = funds;
+        console.log("Total available personal funds: " + funds.toLocaleString());
+    }
+    renderTable();
 }
 
 
@@ -194,14 +199,17 @@ function renderTable () {
   planetTable.html("");
   var lastPlanet;
   totalFeasibleWorlds = 0;
+  if (user == "individual") {
+     var funds = indivProjectFunds;
+  } else {
+      var funds = projectFunds;
+  }
   for (i=0; i < candidateWorlds.length; i++) {
       if (candidateWorlds[i].name != lastPlanet) { // make sure we aren't showing duplicate planets
-          if (projectFunds >= candidateWorlds[i].cost) {
-            var color = "feasible";
+          if (funds >= candidateWorlds[i].cost) {
             var feasibility = `<span class="feasible">YES</span>`;
             totalFeasibleWorlds++;
           } else {
-            var color = "not-feasible";
             var feasibility = `<span class="not-feasible">NO</span>`;
           }
           planetTable.append(`<tr class="border-b odd:bg-white even:bg-slate-50">
@@ -217,8 +225,12 @@ function renderTable () {
 
   }
   deetSection.html("");
-  deetSection.append(`<p><strong>Your GDP:</strong> ` + GDP.toLocaleString() + `</p><p><strong>Total mission funding:</strong> ` + projectFunds.toLocaleString() + `</p><p><strong>Feasible candidate worlds:</strong> ` + totalFeasibleWorlds + `</p>`)
-}
+  if (user != "individual"){
+      deetSection.append(`<p><strong>Your GDP:</strong> ` + GDP.toLocaleString() + `</p><p><strong>Total mission funding:</strong> ` + funds.toLocaleString() + `</p><p><strong>Feasible candidate worlds:</strong> ` + totalFeasibleWorlds + `</p>`)
+  } else {
+      deetSection.append(`<p><strong>Your current net worth:</strong> ` + netWorth.toLocaleString() + `</p><p><strong>Total mission funding:</strong> ` + funds.toLocaleString() + `</p><p><strong>Feasible candidate worlds:</strong> ` + totalFeasibleWorlds + `</p><p class="mt-4"><em>Perhaps you should consider that a more ambitious legacy would be to save the planet we're already on.</em></p>`)
+  }
+ }
 
 
 function validateIndivFields(e) {
@@ -235,7 +247,6 @@ function validateIndivFields(e) {
 
 function init() {
   checkUserType();
-
   parsePlanets();
 }
 
@@ -245,27 +256,3 @@ init();
 $('#searchBtn').click(validateFields);
 $('#indivSearchBtn').click(validateIndivFields);
 
-$('#countryAutocomplete').blur(validateCountry);
-
-
-// accessibleAutocomplete({
-//   element: document.querySelector('#countryAutocomplete-container'),
-//   id: 'countryAutocomplete', // To match it to the existing <label>.
-//   source: countries,
-//   showAllValues: true,
-//   onConfirm: validateCountry,
-//   required: true,
-//   autoselect: true,
-//   displayMenu: 'overlay'
-// });
-
-// accessibleAutocomplete({
-//   element: document.querySelector('#countryAutocomplete-container'),
-//   id: 'personAutocomplete', // To match it to the existing <label>.
-//   source: richassholes,
-//   showAllValues: true,
-//   onConfirm: validateCountry,
-//   required: true,
-//   autoselect: true,
-//   displayMenu: 'overlay'
-// });

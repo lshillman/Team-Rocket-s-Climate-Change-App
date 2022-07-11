@@ -22,12 +22,12 @@ var button = document.querySelector("#asshole");
 
 button.addEventListener("click", function(individual){
     individual.preventDefault();
-    window.location.href = "./calculator-2.html?user=individual"
+    window.location.href = "./calculator.html?user=individual"
 }) 
 
 var govButton = document.querySelector('#government');
 
 govButton.addEventListener("click", function(government){
     government.preventDefault();
-    window.location.href = "./calculator-2.html?user=govt"
+    window.location.href = "./calculator.html?user=govt"
 })

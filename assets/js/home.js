@@ -24,3 +24,10 @@ button.addEventListener("click", function(individual){
     individual.preventDefault();
     window.location.href = "./calculator-2.html?user=individual"
 }) 
+
+var govButton = document.querySelector('#government');
+
+govButton.addEventListener("click", function(government){
+    government.preventDefault();
+    window.location.href = "./calculator-2.html?user=govt"
+})

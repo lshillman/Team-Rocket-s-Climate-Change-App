@@ -1,8 +1,7 @@
 console.log("I'm a JavaScript file linked to this page!");
-var fetchBtn = document.getElementById("government")
 
-function getFucked() {
-    console.log("I'm in the getFucked function");
+function getIce() {
+    console.log("I'm in the getIce function");
     var iceData = 'https://global-warming.org/api/arctic-api';
     const element = document.getElementById('ice-level');
 
@@ -17,6 +16,11 @@ function getFucked() {
 
 }
 
-// fetchBtn.addEventListener('click', getFucked)
+getIce();
 
-getFucked();
+var button = document.querySelector("#asshole");
+
+button.addEventListener("click", function(individual){
+    individual.preventDefault();
+    window.location.href("?user=individual")
+})

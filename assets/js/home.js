@@ -11,7 +11,7 @@ function getIce() {
     })
     .then(function (data){
             console.log(data.arcticData[data.arcticData.length-1].extent)
-            element.innerText = (data.arcticData[data.arcticData.length-1].extent + " million km^2");
+            element.innerText = (data.arcticData[data.arcticData.length-1].extent + "m km²");
     })
 
 }

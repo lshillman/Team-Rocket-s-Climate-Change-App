@@ -20,31 +20,32 @@
         <h1 class="text-center text-2xl p-10">Let's have a look at your info, shall we?</h1>
         <form class="text-center">
             <!-- accessible autocomplete widget from gov.uk -->
-            <label for="countryAutocomplete">Select your country</label>
-            <div id="countryAutocomplete-container"></div>
+            <label for="countryAutocomplete" class="">Select your country</label>
+            <div id="countryAutocomplete-container" class=""></div>
             
             <label for="percent">% you can devote to your space program</label>
             <input id="percent" type="number" min="0" max="100" placeholder="e.g., 13">
 
             <label for="ttl">Time to launch (years from now)</label>
-            <select id="ttl">
-                <option value="select-a-timeframe">Select a timeframe</option>
-                <option value="300">300</option>
-                <option value="200">200</option>
-                <option value="175">175</option>
-                <option value="150">150</option>
-                <option value="125">125</option>
-                <option value="100">100</option>
-                <option value="90">90</option>
-                <option value="80">80</option>
-                <option value="70">70</option>
-                <option value="60">60</option>
-                <option value="50">50</option>
-                <option value="40">40</option>
-                <option value="30">30</option>
-                <option value="20">20</option>
-            </select>
-            <button type="submit" id="searchBtn">Find candidate worlds</button>      
+                <select id="ttl" class="p-10">
+                    <option value="select-a-timeframe">Select a timeframe</option>
+                    <option value="300">300</option>
+                    <option value="200">200</option>
+                    <option value="175">175</option>
+                    <option value="150">150</option>
+                    <option value="125">125</option>
+                    <option value="100">100</option>
+                    <option value="90">90</option>
+                    <option value="80">80</option>
+                    <option value="70">70</option>
+                    <option value="60">60</option>
+                    <option value="50">50</option>
+                    <option value="40">40</option>
+                    <option value="30">30</option>
+                    <option value="20">20</option>
+                </select>
+                <br>
+            <button type="submit" id="searchBtn" class="inline-block px-6 py-2.5 bg-purple-700 text-white font-medium leading-tight rounded shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-800 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out">Find candidate worlds</button>      
         </form>
     </main>
 

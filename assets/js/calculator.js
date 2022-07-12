@@ -33,7 +33,6 @@ var richassholes = {}; // this will store names and net worths
 var raNames = []; // this is names only (for the autocomplete widget)
 
 var countries = [];
-//['France', 'Russia', 'United States', 'United Kingdom', 'Bahamas', 'Bermuda', 'Russia']; // we'll get this from the restcountries api
 
 function parsePlanets () {
   // This used to be a function that made an API call to the NASA exoplanet archive. That API started giving me CORS errors, so now it just parses a local JSON file I downloaded through my browser.
@@ -50,9 +49,6 @@ function parsePlanets () {
   candidateWorlds.sort((a, b) => {
     return a.distance - b.distance; // sort candidateWorlds nearest to farthest
   });
-
-  console.log(candidateWorlds);
-
 }
 
 function checkUserType() {
@@ -94,7 +90,6 @@ function getAssholes () {
         required: true,
         displayMenu: 'overlay'
       }); 
-      console.log(richassholes);
     })
 }
 
@@ -141,7 +136,6 @@ function getGDP(countryCode) {
 
 function getCountries () {
   fetch('https://restcountries.com/v3.1/all?fields=name,cca3,independent')
-  // fetch(testURL)
     .then(function (response) {
       return response.json();
     })

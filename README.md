@@ -1,16 +1,31 @@
-# Project Title
+# Interstellar Generation Ship Feasibility Calculator
 
 ## Check out the [deployed app](https://lshillman.github.io/generation-ship-calculator/)
 
-Description of project (also remember to add a blurb and the deployed link to the repo's "about" section)
+This is a calculator that you, a government representative can use to determine whether an offworld colony ship is feasible, given your GDP and space program budget.
 
-What I did
+Or that you, a wealthy private individual with disproportionate access to planetary resources, can use to determine whether you could fund such an endeavor out of your personal coffers.
+
+This is ~~based on~~ _inspired by_ work by Project Hyperion, a two-year study on the feasibility of a crewed interstellar flight. Project Hyperion's math was not entirely grokkable for us given our timeframe to develop this, so we have greatly simplified the calculations.
+
 
 ## Technologies used:
 
 * HTML
 * CSS
 * JS
+* jQuery
+* Tailwind CSS
+* GOV.UK's accessible autocomplete widget
+
+## APIs consumed:
+* global-warming.org (polar ice info)
+* REST countries
+* World Bank Indicators (for GDP)
+* NASA Exoplanet Archive
+* Rich Assholes
+
+## User stories
 
 
 ## Code snippet

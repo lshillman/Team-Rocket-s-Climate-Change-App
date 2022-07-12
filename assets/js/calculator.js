@@ -65,7 +65,6 @@ function checkUserType() {
         getCountries();
         user = "govt";
     }
-
 }
 
 
@@ -228,7 +227,7 @@ function renderTable () {
   if (user != "individual"){
       deetSection.append(`<p><strong>Your GDP:</strong> ` + GDP.toLocaleString() + `</p><p><strong>Total mission funding:</strong> ` + funds.toLocaleString() + `</p><p><strong>Feasible candidate worlds:</strong> ` + totalFeasibleWorlds + `</p>`)
   } else {
-      deetSection.append(`<p><strong>Your current net worth:</strong> ` + netWorth.toLocaleString() + `</p><p><strong>Total mission funding:</strong> ` + funds.toLocaleString() + `</p><p><strong>Feasible candidate worlds:</strong> ` + totalFeasibleWorlds + `</p><p class="mt-4"><em>Perhaps you should consider that a more ambitious legacy would be to save the planet we're already on.</em></p>`)
+      deetSection.append(`<p><strong>Your current net worth:</strong> ` + netWorth.toLocaleString() + `</p><p><strong>Total mission funding:</strong> ` + funds.toLocaleString() + `</p><p><strong>Feasible candidate worlds:</strong> ` + totalFeasibleWorlds + `</p><p class="mt-4"><em>Perhaps you should consider that a more ambitious legacy would be to <a href="https://pbarkley.github.io/Helping-Hand/" target="_blank" class="text-purple-700">save the planet we're already on</a>.</em></p>`)
   }
  }
 

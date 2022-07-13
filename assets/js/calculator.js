@@ -79,6 +79,7 @@ function checkUserType() {
 
 function getAssholes (str) {
   $('#personAutocomplete-container').html("");
+  raNames = [];
     fetch(raURL)
     .then(function (response) {
       return response.json();
@@ -151,6 +152,7 @@ function getGDP(countryCode) {
 
 function getCountries (str) {
   $('#countryAutocomplete-container').html(""); // make sure we don't render two autocompletes after getting stuff from localStorage
+  countries = []; // make sure we don't duplicate country names inside the list after loading localStorage
   fetch('https://restcountries.com/v3.1/all?fields=name,cca3,independent')
     .then(function (response) {
       return response.json();
@@ -188,7 +190,7 @@ function validateFields(e) {
   if ((percentEl.val() > 0 && percentEl.val() <= 100) && ttlEl.val() != "select-a-timeframe" && countryName) {
     calculateFunds();
   } else {
-    // TODO: handle validation messages per-field
+    $('#validationMsg').css("display", "block");
   }
 }
 
@@ -243,6 +245,7 @@ function renderTable () {
       } else {
           deetSection.append(`<p><strong>Your current net worth:</strong> ` + (netWorth * 1).toLocaleString() + `</p><p><strong>Total mission funding:</strong> ` + funds.toLocaleString() + `</p><p><strong>Feasible candidate worlds:</strong> ` + totalFeasibleWorlds + `</p><p class="mt-4"><em>Perhaps you should consider that a more ambitious legacy would be to <a href="https://pbarkley.github.io/Helping-Hand/" target="_blank" class="text-purple-700">save the planet we're already on</a>.</em></p>`)
       }
+      $('#validationMsg').css("display", "none");
       // save last search to localStorage
 
       localStorage.setItem("gs_user", user);
@@ -264,7 +267,7 @@ function validateIndivFields(e) {
   if ((percentOfWealth.val() > 0 && percentOfWealth.val() <= 100) && indivTTL.val() != "select-a-timeframe" && indivName) {
     calculateFunds();
   } else {
-    // TODO: handle validation messages per-field
+    $('#validationMsg').css("display", "block");
   }
 }
 

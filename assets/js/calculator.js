@@ -185,7 +185,7 @@ function getCountries (str) {
 
 function validateFields(e) {
   e.preventDefault();
-  if ((percentEl.val() > 0 && percentEl.val() <= 100) && ttlEl.val() != "select-a-timeframe") {
+  if ((percentEl.val() > 0 && percentEl.val() <= 100) && ttlEl.val() != "select-a-timeframe" && countryName) {
     calculateFunds();
   } else {
     // TODO: handle validation messages per-field
@@ -261,7 +261,7 @@ function renderTable () {
 
 function validateIndivFields(e) {
   e.preventDefault();
-  if ((percentOfWealth.val() > 0 && percentOfWealth.val() <= 100) && indivTTL.val() != "select-a-timeframe") {
+  if ((percentOfWealth.val() > 0 && percentOfWealth.val() <= 100) && indivTTL.val() != "select-a-timeframe" && indivName) {
     calculateFunds();
   } else {
     // TODO: handle validation messages per-field

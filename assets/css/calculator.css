@@ -65,3 +65,7 @@ input[type=number] {
 #individualForm {
     display:none;
 }
+
+#loadFromLocal {
+    display:none;
+}

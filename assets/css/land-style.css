@@ -1,6 +1,6 @@
 body {
-    background-image: url("https://www.nasa.gov/sites/default/files/images/542391main_iss027e012224_full.jpg");
+    background-image: url("../../assets/images/leo-bg.jpg");
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center;
+    background-color: #000;
 }

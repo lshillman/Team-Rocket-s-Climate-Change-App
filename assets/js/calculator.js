@@ -109,13 +109,9 @@ function getAssholes (str) {
 
 
 function validatePerson(str) {
-  console.log('I am now validating the person');
   if (richassholes[str]) {
     netWorth = richassholes[str];
     indivName = str;
-    console.log(netWorth)
-  } else {
-    console.log('You must choose a person from the list');
   }
 
 }
@@ -123,13 +119,10 @@ function validatePerson(str) {
 
 
 function validateCountry(str) {
-  console.log('I am now validating the country');
   if (countries.includes(str)) {
     var countryCode = str.split(" - ")[1];
     countryName = str;
     getGDP(countryCode);
-  } else {
-    // console.log('You must choose a country from the list');
   }
 
 }
@@ -143,9 +136,7 @@ function getGDP(countryCode) {
         return response.json();
       })
       .then(function (data){
-        console.log(data);
         GDP = data[1][0].value;
-        console.log(GDP);
       })
 }
 
@@ -158,15 +149,12 @@ function getCountries (str) {
       return response.json();
     })
     .then(function (data){
-      console.log(data);
-
       for (i=0; i < data.length; i++) {
         if (data[i].independent) {
           countries.push(data[i].name.common + " - " + data[i].cca3)
         }
       }
       countries.sort();
-      console.log(countries);
       accessibleAutocomplete({
         element: document.querySelector('#countryAutocomplete-container'),
         id: 'countryAutocomplete', // To match it to the existing <label>.
@@ -198,11 +186,9 @@ function calculateFunds() {
     if (user != "individual") {
         var funds = Math.floor(GDP * (percentEl.val()/100) * ttlEl.val());
         projectFunds = funds;
-        console.log("Total available funds: " + funds.toLocaleString());
     } else {
         var funds = Math.floor(netWorth * (percentOfWealth.val()/100) * indivTTL.val());
         indivProjectFunds = funds;
-        console.log("Total available personal funds: " + funds.toLocaleString());
     }
     renderTable();
 }

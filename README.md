@@ -26,11 +26,11 @@ This is ~~based on~~ _inspired by_ work by Project Hyperion, a two-year study on
 * Rich Assholes
 
 ## User stories
-![user story](assets\images\user-story-government.jpg)
+![user story](./assets/images/user-story-government.jpg)
 
-![user story](assets\images\user-story-individual.jpg)
+![user story](./assets/images/user-story-individual.jpg)
 
-![user story](assets\images\user-story-planet-info.jpg)
+![user story](./assets/images/user-story-planet-info.jpg)
 
 ## Code snippet
 

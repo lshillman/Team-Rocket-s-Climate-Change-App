@@ -26,11 +26,24 @@ This is ~~based on~~ _inspired by_ work by Project Hyperion, a two-year study on
 * Rich Assholes
 
 ## User stories
-![user story](./assets/images/user-story-government.jpg)
 
-![user story](./assets/images/user-story-individual.jpg)
+Our calculator supports two main use cases: a government user calculating feasibility based on a % of their GDP over time, and a wealthy individual making the same calculation based on their net worth. For the former, we fetch GDP from the World Bank Indicators api. For the latter, we fetch net worths from the Rich Assholes api.
 
-![user story](./assets/images/user-story-planet-info.jpg)
+### As a government user, I want to enter my country into a form, so that I can make calculations based on my country's GDP.
+![a demo of the completed story](./assets/readme/gs-country.gif)
+
+### As a private individual with disproportionate access to planetary resources, I want to retrieve a list of possible worlds to colonize with my vanity space program, so I can prove to the world it wasn't a vanity space program.
+![a demo of the completed story](./assets/readme/gs-individual.gif)
+
+### As any type of user, I want to be able to learn more about the possible candidate worlds, so I can make an informed decision.
+![a demo of the completed story](./assets/readme/gs-learnmore.gif)
+
+## CSS framework
+
+We used Tailwind CSS. It's great.
+
+![a demo of the completed story](./assets/readme/gs-responsive-behavior.gif)
+
 
 ## Code snippet
 

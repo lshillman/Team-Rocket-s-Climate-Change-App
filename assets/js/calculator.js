@@ -8,11 +8,13 @@ var user; // the type of user, passed in as a URL parameter
 
 // country form elements
 var countryForm = $('#countryForm');
+var countryName;
 var percentEl = $('#percent');
 var ttlEl = $('#ttl');
 
 // billionnaire form elements
 var individualForm = $('#individualForm');
+var indivName;
 var percentOfWealth = $('#indivPercent');
 var indivTTL = $('#indivTTL');
 
@@ -26,6 +28,10 @@ var projectFunds;
 var netWorth;
 var indivProjectFunds;
 var totalFeasibleWorlds;
+
+// localStorage stuff
+var countryFromLocal;
+var nameFromLocal;
 
 var candidateWorlds = []; // 
 
@@ -71,7 +77,8 @@ function checkUserType() {
 
 
 
-function getAssholes () {
+function getAssholes (str) {
+  $('#personAutocomplete-container').html("");
     fetch(raURL)
     .then(function (response) {
       return response.json();
@@ -88,8 +95,14 @@ function getAssholes () {
         showAllValues: true,
         onConfirm: validatePerson,
         required: true,
-        displayMenu: 'overlay'
-      }); 
+        displayMenu: 'overlay',
+        defaultValue: str // the value from localStorage, if it exists
+      });
+
+    }).then(function (data) {
+      if (nameFromLocal) {
+        $('#personAutocomplete').val(personFromLocal);
+      }
     })
 }
 
@@ -98,6 +111,7 @@ function validatePerson(str) {
   console.log('I am now validating the person');
   if (richassholes[str]) {
     netWorth = richassholes[str];
+    indivName = str;
     console.log(netWorth)
   } else {
     console.log('You must choose a person from the list');
@@ -111,6 +125,7 @@ function validateCountry(str) {
   console.log('I am now validating the country');
   if (countries.includes(str)) {
     var countryCode = str.split(" - ")[1];
+    countryName = str;
     getGDP(countryCode);
   } else {
     // console.log('You must choose a country from the list');
@@ -134,7 +149,8 @@ function getGDP(countryCode) {
 }
 
 
-function getCountries () {
+function getCountries (str) {
+  $('#countryAutocomplete-container').html(""); // make sure we don't render two autocompletes after getting stuff from localStorage
   fetch('https://restcountries.com/v3.1/all?fields=name,cca3,independent')
     .then(function (response) {
       return response.json();
@@ -157,15 +173,19 @@ function getCountries () {
         onConfirm: validateCountry,
         required: true,
         autoselect: true,
-        displayMenu: 'overlay'
+        displayMenu: 'overlay',
+        defaultValue: str // the value from localStorage, if it exists
       });
+      if (countryFromLocal) {
+        $('#countryAutocomplete').val(countryFromLocal);
+      }
     })
 }
 
 
 function validateFields(e) {
   e.preventDefault();
-  if ((percentEl.val() > 0 && percentEl.val() <= 100) && ttlEl.val() != "select-a-timeframe") {
+  if ((percentEl.val() > 0 && percentEl.val() <= 100) && ttlEl.val() != "select-a-timeframe" && countryName) {
     calculateFunds();
   } else {
     // TODO: handle validation messages per-field
@@ -217,29 +237,70 @@ function renderTable () {
       }
 
   }
-  deetSection.html("");
-  if (user != "individual"){
-      deetSection.append(`<p><strong>Your GDP:</strong> ` + GDP.toLocaleString() + `</p><p><strong>Total mission funding:</strong> ` + funds.toLocaleString() + `</p><p><strong>Feasible candidate worlds:</strong> ` + totalFeasibleWorlds + `</p>`)
-  } else {
-      deetSection.append(`<p><strong>Your current net worth:</strong> ` + netWorth.toLocaleString() + `</p><p><strong>Total mission funding:</strong> ` + funds.toLocaleString() + `</p><p><strong>Feasible candidate worlds:</strong> ` + totalFeasibleWorlds + `</p><p class="mt-4"><em>Perhaps you should consider that a more ambitious legacy would be to <a href="https://pbarkley.github.io/Helping-Hand/" target="_blank" class="text-purple-700">save the planet we're already on</a>.</em></p>`)
-  }
+      deetSection.html("");
+      if (user != "individual"){
+          deetSection.append(`<p><strong>Your GDP:</strong> ` + (GDP * 1).toLocaleString() + `</p><p><strong>Total mission funding:</strong> ` + funds.toLocaleString() + `</p><p><strong>Feasible candidate worlds:</strong> ` + totalFeasibleWorlds + `</p>`)
+      } else {
+          deetSection.append(`<p><strong>Your current net worth:</strong> ` + (netWorth * 1).toLocaleString() + `</p><p><strong>Total mission funding:</strong> ` + funds.toLocaleString() + `</p><p><strong>Feasible candidate worlds:</strong> ` + totalFeasibleWorlds + `</p><p class="mt-4"><em>Perhaps you should consider that a more ambitious legacy would be to <a href="https://pbarkley.github.io/Helping-Hand/" target="_blank" class="text-purple-700">save the planet we're already on</a>.</em></p>`)
+      }
+      // save last search to localStorage
+
+      localStorage.setItem("gs_user", user);
+      localStorage.setItem("gs_gdp", GDP);
+      localStorage.setItem("gs_networth", netWorth);
+      localStorage.setItem("gs_country", countryName);
+      localStorage.setItem("gs_person", indivName);
+      localStorage.setItem("gs_countryPercent", percentEl.val());
+      localStorage.setItem("gs_personPercent", percentOfWealth.val());
+      localStorage.setItem("gs_countryTTL", ttlEl.val());
+      localStorage.setItem("gs_personTTL", indivTTL.val());
+      $('#loadFromLocal').css("display", "none");
+
  }
 
 
 function validateIndivFields(e) {
   e.preventDefault();
-  if ((percentOfWealth.val() > 0 && percentOfWealth.val() <= 100) && indivTTL.val() != "select-a-timeframe") {
+  if ((percentOfWealth.val() > 0 && percentOfWealth.val() <= 100) && indivTTL.val() != "select-a-timeframe" && indivName) {
     calculateFunds();
   } else {
     // TODO: handle validation messages per-field
   }
 }
 
+function loadFromLocal () {
+    if (localStorage.getItem("gs_user") == "individual") {
+      getAssholes(localStorage.getItem("gs_person"));
+      percentOfWealth.val(localStorage.getItem("gs_personPercent"));
+      indivTTL.val(localStorage.getItem("gs_personTTL"));
+      netWorth = localStorage.getItem("gs_networth");
+      individualForm.css("display", "block");
+      countryForm.css("display", "none");
+      user = "individual";
+      indivName = localStorage.getItem("gs_person");
+      calculateFunds();
+    } else {
+      getCountries(localStorage.getItem("gs_country"));
+      percentEl.val(localStorage.getItem("gs_countryPercent"));
+      ttlEl.val(localStorage.getItem("gs_countryTTL"));
+      GDP = localStorage.getItem("gs_gdp");
+      individualForm.css("display", "none");
+      countryForm.css("display", "block");
+      user = "govt";
+      countryName = localStorage.getItem("gs_country")
+      calculateFunds();
+    }
+}
 
-
+function checkLocal () {
+  if (localStorage.getItem("gs_user")) {
+    $('#loadFromLocal').css("display", "block");
+  }
+}
 
 function init() {
   checkUserType();
+  checkLocal();
   parsePlanets();
 }
 
@@ -248,4 +309,4 @@ init();
 
 $('#searchBtn').click(validateFields);
 $('#indivSearchBtn').click(validateIndivFields);
-
+$('#loadFromLocal').click(loadFromLocal);

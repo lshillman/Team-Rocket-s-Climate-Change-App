@@ -6,7 +6,7 @@ This is a calculator that you, a government representative can use to determine 
 
 Or that you, a wealthy private individual with disproportionate access to planetary resources, can use to determine whether you could fund such an endeavor out of your personal coffers.
 
-This is ~~based on~~ _inspired by_ work by Project Hyperion, a two-year study on the feasibility of a crewed interstellar flight. Project Hyperion's math was not entirely grokkable for us given our timeframe to develop this, so we have greatly simplified the calculations.
+This is ~~based on~~ _inspired by_ work by [Project Hyperion](https://en.wikipedia.org/wiki/Project_Hyperion_(interstellar)), a two-year study on the feasibility of a crewed interstellar flight. Project Hyperion's math was not entirely grokkable for us given our timeframe to develop this, so we have greatly simplified the calculations.
 
 Our learning objectives here were to get comfortable working with third-party APIs. Along the way, we lost most our hair due to CORS errors. But we're better now.
 
@@ -109,7 +109,7 @@ Here, along with the information displayed in the candidate worlds table, we pro
 
 ## CSS framework
 
-We used Tailwind CSS. It's great.
+We used Tailwind CSS. After researching different CSS frameworks, we decided on Tailwind due to it's format and documentation. Tailwind met all of our expectations and I will likely end up using it for future projects. 
 
 ![a demo of the completed story](./assets/readme/gs-responsive-behavior.gif)
 

@@ -109,7 +109,7 @@ Here, along with the information displayed in the candidate worlds table, we pro
 
 ## CSS framework
 
-We used Tailwind CSS. After researching different CSS frameworks, we decided on Tailwind due to it's format and documentation. Tailwind met all of our expectations and I will likely end up using it for future projects. 
+We used Tailwind CSS. After researching different CSS frameworks, we decided on Tailwind due to its format and documentation. Tailwind met all of our expectations and I will likely end up using it for future projects. 
 
 ![a demo of the completed story](./assets/readme/gs-responsive-behavior.gif)
 

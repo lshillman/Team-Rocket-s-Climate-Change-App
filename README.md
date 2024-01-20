@@ -25,7 +25,7 @@ Our learning objectives here were to get comfortable working with third-party AP
 * [REST countries](https://restcountries.com/) (for a list of countries and codes)
 * [World Bank Indicators](https://datahelpdesk.worldbank.org/knowledgebase/articles/898581-api-basic-call-structures) (for GDP)
 * [NASA Exoplanet Archive](https://exoplanetarchive.ipac.caltech.edu/docs/program_interfaces.html) (for destination worlds)
-* [Rich Assholes](https://richassholes.ml/) (for net worths of billionaires)
+* [Rich Assholes](https://richassholes.rest/) (for net worths of billionaires)
 
 ## User stories
 
@@ -68,7 +68,7 @@ function getCountries (str) {
 ````
 
 ### As a private individual with disproportionate access to planetary resources, I want to retrieve a list of possible worlds to colonize with my vanity space program, so I can prove to the world it wasn't a vanity space program.
-Here, we're retrieving a list of the current 100 richest people on Earth and their net worths from [Rich Assholes](https://richassholes.ml/), and then performing essentially the same calculation as above. It turns out that no billionaire has the resources to leave the solar system, so when we deliver the bad news we give them a link to some charities they might want to support, instead.
+Here, we're retrieving a list of the current 100 richest people on Earth and their net worths from [Rich Assholes](https://richassholes.rest/), and then performing essentially the same calculation as above. It turns out that no billionaire has the resources to leave the solar system, so when we deliver the bad news we give them a link to some charities they might want to support, instead.
 
 ![a demo of the completed story](./assets/readme/gs-individual.gif)
 
